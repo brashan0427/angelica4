@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para una persona especial ✨</title>
+    <style>
+        /* Estilos Base y Fondo Espacial */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        /* Contenedor Estilo Cristal */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 80%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffcc00;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        #typewriter {
+            font-size: 1.1em;
+            line-height: 1.6;
+            min-height: 200px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #ffcc00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            opacity: 0;
+            transition: transform 0.3s, opacity 1s;
+        }
+
+        .btn.show {
+            opacity: 1;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background: #fff;
+        }
+
+        /* --- Animación de Estrellas Fugaces --- */
+        .night {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotateZ(45deg);
+        }
+
+        .shooting_star {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 2px;
+            background: linear-gradient(-45deg, #5f91ff, rgba(0, 0, 255, 0));
+            border-radius: 999px;
+            filter: drop-shadow(0 0 6px #699bff);
+            animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+        }
+
+        .shooting_star::before, .shooting_star::after {
+            content: '';
+            position: absolute;
+            top: calc(50% - 1px);
+            right: 0;
+            height: 2px;
+            background: linear-gradient(-45deg, rgba(0, 0, 255, 0), #5f91ff, rgba(0, 0, 255, 0));
+            transform: translateX(50%) rotateZ(45deg);
+            border-radius: 100%;
+            animation: shining 3000ms ease-in-out infinite;
+        }
+
+        /* Variaciones de posición para las estrellas */
+        .shooting_star:nth-child(1) { top: 10%; left: 10%; animation-delay: 0ms; }
+        .shooting_star:nth-child(2) { top: 30%; left: 50%; animation-delay: 1000ms; }
+        .shooting_star:nth-child(3) { top: 50%; left: 20%; animation-delay: 2500ms; }
+        .shooting_star:nth-child(4) { top: 70%; left: 80%; animation-delay: 4000ms; }
+        .shooting_star:nth-child(5) { top: 0%; left: 60%; animation-delay: 5500ms; }
+
+        @keyframes tail {
+            0% { width: 0; }
+            30% { width: 100px; }
+            100% { width: 0; }
+        }
+
+        @keyframes shooting {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(300px); }
+        }
+
+        @keyframes shining {
+            0% { width: 0; }
+            50% { width: 30px; }
+            100% { width: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="night">
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+    </div>
+
+    <div class="card">
+        <h1>Para la chica que se robo mi corazón❤️</h1>
+        <div id="typewriter"></div>
+        <a href="https://wa.me/51933848110" id="replyBtn" class="btn">Aqui me respondes🌚</a>
+    </div>
+
+    <script>
+        const text = `Hola mi amor:3,
+
+No se como empezar pero tratare de que sea breve, desde hace tiempo me hubiera gustado que esta historia sea "oficial" pero todo debia ser a su debido momento 
+
+Esperarnos todo este tiempo fue necesario para que estemos bien los dos y creo que fue una buena decision que tomamos, esperar a que te sientas lista fue una de las mejores decisiones que tome,
+aunque hubieron momentos dificiles en el que nos separamos por un tiempo sirvieron para darnos cuenta que a pesar de todo seguimos aca, gracias a eso pienso que la mejor manera de estar juntos es esperar un tiempo separados.
+
+Para terminar quiero decirte que te quiero mucho, eres una chica increible me traes muy enamorado de ti en todo aspecto,
+hace 2 años empezo esta linda historia ahora no quiero que acabe, quiero que esta sea nuestra historia de amor en la que seamos felices, dicho todo esto me tomo el atrevimiento de preguntarte...
+
+¿Quieres ser mi enamorada? ❤️`;
+
+        let i = 0;
+        const speed = 60;
+        const typewriterElement = document.getElementById('typewriter');
+        const btn = document.getElementById('replyBtn');
+
+        function typeWriter() {
+            if (i < text.length) {
+                typewriterElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                btn.classList.add('show');
+            }
+        }
+
+        // Iniciar efecto después de un segundo
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>
